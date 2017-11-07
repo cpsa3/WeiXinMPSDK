@@ -14,6 +14,6 @@ namespace Senparc.Weixin.MP.AdvancedAPIs
         /// <summary>
         /// msgid
         /// </summary>
-        public int msgid { get; set; }
+        public long msgid { get; set; }
     }
 }
