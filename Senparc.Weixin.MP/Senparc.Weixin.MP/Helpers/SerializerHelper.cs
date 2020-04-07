@@ -1,9 +1,9 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Web.Script.Serialization;
 
 namespace Senparc.Weixin.MP.Helpers
 {
@@ -27,8 +27,12 @@ namespace Senparc.Weixin.MP.Helpers
 
         public string GetJsonString(object data)
         {
-            JavaScriptSerializer js = new JavaScriptSerializer();
-            var jsonString = js.Serialize(data);
+            JsonSerializerSettings settings = new JsonSerializerSettings()
+            {
+                NullValueHandling = NullValueHandling.Ignore,
+            };
+
+            var jsonString = JsonConvert.SerializeObject(data, settings);
 
             //解码Unicode，也可以通过设置App.Config（Web.Config）设置来做，这里只是暂时弥补一下，用到的地方不多
             MatchEvaluator evaluator = new MatchEvaluator(DecodeUnicode);

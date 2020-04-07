@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Web;
+using Microsoft.AspNetCore.Http;
 using Senparc.Weixin.MP.Helpers;
 
 namespace Senparc.Weixin.MP.HttpUtility
@@ -197,8 +198,8 @@ namespace Senparc.Weixin.MP.HttpUtility
         /// <returns></returns>
         public static bool IsWeixinClientRequest(this HttpContext httpContext)
         {
-            return !string.IsNullOrEmpty(httpContext.Request.UserAgent) &&
-                   httpContext.Request.UserAgent.Contains("MicroMessenger");
+            return httpContext.Request.Headers.ContainsKey("User-Agent") &&
+                   httpContext.Request.Headers["User-Agent"].ToString().Contains("MicroMessenger");
         }
 
         /// <summary>

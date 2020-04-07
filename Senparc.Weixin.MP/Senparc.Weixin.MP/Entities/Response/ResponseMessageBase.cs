@@ -91,8 +91,10 @@ namespace Senparc.Weixin.MP.Entities
 				var tType = typeof(T);
 				var responseName = tType.Name.Replace("ResponseMessage", ""); //请求名称
 				ResponseMsgType msgType = (ResponseMsgType)Enum.Parse(typeof(ResponseMsgType), responseName);
-				return CreateFromRequestMessage(requestMessage, msgType) as T;
-			}
+#pragma warning disable CS0618 // 类型或成员已过时
+                return CreateFromRequestMessage(requestMessage, msgType) as T;
+#pragma warning restore CS0618 // 类型或成员已过时
+            }
 			catch (Exception ex)
 			{
 				throw new WeixinException("ResponseMessageBase.CreateFromRequestMessage<T>过程发生异常！", ex);

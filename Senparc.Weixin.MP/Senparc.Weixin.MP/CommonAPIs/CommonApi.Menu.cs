@@ -5,7 +5,6 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
-using System.Web.Script.Serialization;
 using Senparc.Weixin.MP.Entities;
 using Senparc.Weixin.MP.Entities.Menu;
 using Senparc.Weixin.MP.Exceptions;
@@ -85,8 +84,7 @@ namespace Senparc.Weixin.MP.CommonAPIs
                 //@"{""menu"":{""button"":[{""type"":""click"",""name"":""单击测试"",""key"":""OneClick"",""sub_button"":[]},{""name"":""二级菜单"",""sub_button"":[{""type"":""click"",""name"":""返回文本"",""key"":""SubClickRoot_Text"",""sub_button"":[]},{""type"":""click"",""name"":""返回图文"",""key"":""SubClickRoot_News"",""sub_button"":[]},{""type"":""click"",""name"":""返回音乐"",""key"":""SubClickRoot_Music"",""sub_button"":[]}]}]}}"
                 object jsonResult = null;
 
-                JavaScriptSerializer js = new JavaScriptSerializer();
-                jsonResult = js.Deserialize<object>(jsonString);
+                jsonResult = Newtonsoft.Json.JsonConvert.DeserializeObject(jsonString);
 
                 var fullResult = jsonResult as Dictionary<string, object>;
                 if (fullResult != null && fullResult.ContainsKey("menu"))
@@ -149,10 +147,9 @@ namespace Senparc.Weixin.MP.CommonAPIs
             //var finalResult = GetMenuFromJson(jsonString);
 
             GetMenuResult finalResult;
-            JavaScriptSerializer js = new JavaScriptSerializer();
             try
             {
-                var jsonResult = js.Deserialize<GetMenuResultFull>(jsonString);
+                var jsonResult = Newtonsoft.Json.JsonConvert.DeserializeObject<GetMenuResultFull>(jsonString); 
                 if (jsonResult.menu == null || jsonResult.menu.button.Count == 0)
                 {
                     throw new WeixinException(jsonResult.errmsg);

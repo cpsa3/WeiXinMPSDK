@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Web.Script.Serialization;
 using Senparc.Weixin.MP.CommonAPIs;
 
 namespace Senparc.Weixin.MP.AdvancedAPIs
@@ -76,8 +75,7 @@ namespace Senparc.Weixin.MP.AdvancedAPIs
 		private static T GetCustomInfoResult<T>(string urlFormat)
 		{
 			var jsonString = HttpUtility.RequestUtility.HttpGet(urlFormat, Encoding.UTF8);
-			JavaScriptSerializer js = new JavaScriptSerializer();
-			return js.Deserialize<T>(jsonString);
+            return (T)Newtonsoft.Json.JsonConvert.DeserializeObject(jsonString, typeof(T));
 		}
     }
 }
