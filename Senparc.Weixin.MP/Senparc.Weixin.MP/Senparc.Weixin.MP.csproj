@@ -1,12 +1,12 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>netstandard2.0</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageId>SchoolPal.Senparc.Weixin.MP</PackageId>
     <Authors>XiaoBao Online Ltd.</Authors>
     <Company>XiaoBao Online Ltd.</Company>
-    <Version>7.2.1</Version>
+    <Version>7.2.2</Version>
     <Description>支持dotnet core3.1</Description>
     <PackageProjectUrl>&gt;https://github.com/cpsa3/WeiXinMPSDK/tree/dotnetcore_7.1.5</PackageProjectUrl>
     <RepositoryType>git</RepositoryType>
@@ -21,7 +21,6 @@
 
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="9.0.1" />
-    <PackageReference Include="Microsoft.AspNetCore.Http" Version="1.1.0" />
   </ItemGroup>
 
   <ItemGroup>
