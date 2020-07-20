@@ -5,7 +5,6 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Web;
-using Microsoft.AspNetCore.Http;
 using Senparc.Weixin.MP.Helpers;
 
 namespace Senparc.Weixin.MP.HttpUtility
@@ -191,16 +190,16 @@ namespace Senparc.Weixin.MP.HttpUtility
             }
         }
 
-        /// <summary>
-        /// 请求是否发起自微信客户端的浏览器
-        /// </summary>
-        /// <param name="httpContext"></param>
-        /// <returns></returns>
-        public static bool IsWeixinClientRequest(this HttpContext httpContext)
-        {
-            return httpContext.Request.Headers.ContainsKey("User-Agent") &&
-                   httpContext.Request.Headers["User-Agent"].ToString().Contains("MicroMessenger");
-        }
+        ///// <summary>
+        ///// 请求是否发起自微信客户端的浏览器
+        ///// </summary>
+        ///// <param name="httpContext"></param>
+        ///// <returns></returns>
+        //public static bool IsWeixinClientRequest(this HttpContext httpContext)
+        //{
+        //    return httpContext.Request.Headers.ContainsKey("User-Agent") &&
+        //           httpContext.Request.Headers["User-Agent"].ToString().Contains("MicroMessenger");
+        //}
 
         /// <summary>
         /// 组装QueryString的方法
